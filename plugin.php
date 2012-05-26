@@ -40,15 +40,16 @@ function jdig_get_gallery($gallery_slug='') {
   if ($gallery_slug !== '') {
     $query .= "&gallery=" . $gallery_slug;
   }
-  query_posts($query);
-  if (have_posts()) : while (have_posts()) : the_post();  
+  // query_posts($query);
+  $the_query = new WP_Query( $query );
+  if ($the_query->have_posts()) : while ($the_query->have_posts()) : $the_query->the_post();  
     if (has_post_thumbnail($post->ID)) {
       $thumb_id = get_post_thumbnail_id($post->ID);
       $thumb = get_the_post_thumbnail($post->ID, 'thumbnail');  
       $img_url = wp_get_attachment_url($thumb_id);  
       $gallery .= '<li><a rel="prettyPhoto[jdig_gal]" class="jdig-image" href="' . $img_url . '">' . $thumb . '</a></li>';
     }
-  endwhile; endif; wp_reset_query();  
+  endwhile; endif; wp_reset_postdata();  
   $gallery .= '</ul></div>';
   
   return $gallery; 
