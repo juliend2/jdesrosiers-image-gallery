@@ -38,8 +38,9 @@ function jdig_get_gallery($gallery_slug='') {
   $gallery = '<div class="jdig-gallery"><ul class="jdig-images">';
   $query = "post_type=" . JDIG_CPT_TYPE;
   if ($gallery_slug !== '') {
-    $query .= "&gallery=" . $gallery_slug;
+    $query .= "&".JDIG_TAX_SLUG."=" . $gallery_slug;
   }
+  // $gallery .= '<!-- '.$query.'-->';
   // query_posts($query);
   $the_query = new WP_Query( $query );
   if ($the_query->have_posts()) : while ($the_query->have_posts()) : $the_query->the_post();  
