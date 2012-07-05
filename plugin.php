@@ -22,7 +22,7 @@ function jdig_enqueue_assets() {
 }
 
 function jdig_script() {
-  print '<script type="text/javascript" charset="utf-8"> 
+  print '<script type="text/javascript"> 
     jQuery(window).load(function() { 
       jQuery("a[rel=\'prettyPhoto[jdig_gal]\']").prettyPhoto({
         theme: "dark_square",
