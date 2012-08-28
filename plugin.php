@@ -36,9 +36,13 @@ function jdig_script() {
 function jdig_get_gallery($gallery_slug='') {
   global $post;
   $gallery = '<div class="jdig-gallery"><ul class="jdig-images">';
-  $query = "post_type=" . JDIG_CPT_TYPE;
+  $query = array(
+    "post_type" => JDIG_CPT_TYPE,
+    'posts_per_page' => -1,
+    'orderby'   => 'menu_order',
+    'order'     => 'ASC');
   if ($gallery_slug !== '') {
-    $query .= "&".JDIG_TAX_SLUG."=" . $gallery_slug;
+    $query[JDIG_TAX_SLUG] = $gallery_slug;
   }
   // $gallery .= '<!-- '.$query.'-->';
   // query_posts($query);
